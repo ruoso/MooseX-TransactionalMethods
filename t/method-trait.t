@@ -7,7 +7,7 @@ use_ok('MooseX::TransactionalMethods::Meta::Method');
   use Moose;
   sub txn_do {
       my $code = shift;
-      return $code->(@_);
+      return 'txn_do '.$code->(@_);
   }
 };
 
@@ -48,10 +48,10 @@ my $schema = My::SchemaTest->new();
 my $object1 = My::ClassTest1->new({ schema => $schema });
 my $object2 = My::ClassTest2->new();
 
-is($object1->bla('test1'),'return test1',
+is($object1->bla('test1'),'txn_do return test1',
    'fetching the schema from the instance.');
 
-is($object2->bla('test2'),'return test2',
+is($object2->bla('test2'),'txn_do return test2',
    'using the schema in the declaration.');
 
 done_testing();
