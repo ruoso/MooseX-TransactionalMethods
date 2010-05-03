@@ -6,7 +6,7 @@ subtype 'SchemaGenerator',
   as 'CodeRef';
 coerce 'SchemaGenerator',
   from duck_type(['txn_do']),
-  via { sub { sub { $_ } } };
+  via { my $schema = $_; sub { $schema } };
 
 has schema =>
   ( is => 'ro',
