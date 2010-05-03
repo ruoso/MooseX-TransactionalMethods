@@ -4,6 +4,8 @@ use Moose::Exporter;
 use MooseX::TransactionalMethods::Meta::Method;
 use Sub::Name;
 
+our $VERSION = 0.000001;
+
 Moose::Exporter->setup_import_methods
   ( with_meta => [ 'transactional' ],
     also      => [ 'Moose' ],
@@ -39,3 +41,63 @@ sub transactional {
 }
 
 1;
+
+
+__END__
+
+=head1 NAME
+
+MooseX::TransactionalMethods - Syntax sugar for transactional methods
+
+=head1 SYNOPSIS
+
+  package Foo::Bar;
+  use MooseX::TransactionalMethods; # includes Moose
+  
+  has schema => (is => 'ro');
+  
+  transactional foo => sub {
+     # this is going to happen inside a transaction
+  };
+
+=head1 DESCRIPTION
+
+This method exports the "transactional" declarator that will enclose
+the method in a txn_do call.
+
+=head1 DECLARATOR
+
+=over
+
+=item transactional $name => $code
+
+When you declare with only the name and the coderef, the wrapper will
+call 'schema' on your class to fetch the schema object on which it
+will call txn_do to enclose your coderef.
+
+=item transactional $name => $schema, $code
+
+When you declare sending the schema object, it will store it in the
+method metaclass and use it directly without any calls to this object.
+
+NOTE THAT MIXING DECLARTIONS WITH SCHEMA AND WITHOUT SCHEMA WILL LEAD
+TO PAINFULL CONFUSION SINCE THE WRAPPING IS SPECIFIC TO THAT CLASS AND
+THE BEHAVIOR IS NOT MODIFIED WHEN YOU OVERRIDE THE METHOD. PREFER
+USING THE DYNAMIC DECLARATOR WHEN POSSIBLE.
+
+=back
+
+=head1 AUTHORS
+
+Daniel Ruoso E<lt>daniel@ruoso.comE<gt>
+
+With help from rafl and doy from #moose.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2010 by Daniel Ruoso et al
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

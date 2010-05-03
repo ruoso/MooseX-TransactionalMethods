@@ -30,3 +30,56 @@ around 'wrap' => sub {
 };
 
 1;
+
+__END__
+
+=head1 NAME
+
+MooseX::TransactionalMethods::Meta::Method - Transactional methods trait
+
+=head1 DESCRIPTION
+
+This Role wraps methods in transactions to be used with DBIx::Class,
+KiokuDB or any other object providing a txn_do method.
+
+=head1 METHOD
+
+=over
+
+=item wrap
+
+This role overrides wrap so that the actual method is wrapped in a
+txn_do call. It uses the 'schema' accessor to obtain the object in
+which it will call txn_do.
+
+=back
+
+=head1 ATTRIBUTES
+
+=item schema
+
+This attribute contains a CodeRef that should return the schema
+object. It can be used to pass a schema object when it can be defined
+in compile-time, otherwise it will call "schema" on the object
+instance to find it.
+
+=back
+
+=head1 SEE ALSO
+
+L<MooseX::TransactionalMethods>, L<Class::MOP::Method>
+
+=head1 AUTHORS
+
+Daniel Ruoso E<lt>daniel@ruoso.comE<gt>
+
+With help from rafl and doy from #moose.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2010 by Daniel Ruoso et al
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
