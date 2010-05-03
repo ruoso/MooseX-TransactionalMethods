@@ -25,23 +25,24 @@ my $schema = My::SchemaTest->new();
 
 { package My::ClassTest2;
   use MooseX::TransactionalMethods;
+  use Sub::Name;
   extends 'My::ClassTest1';
   use mro 'c3';
 
-  transactional bla => $schema, sub {
+  transactional bla => sub {
       my ($self, $data) = @_;
       return 'return '.$self->next::method($data);
   };
 }
 
 my $object1 = My::ClassTest1->new({ schema => $schema });
-my $object2 = My::ClassTest2->new();
+my $object2 = My::ClassTest2->new({ schema => $schema });
 
 is($object1->bla('test1'),'txn_do return test1',
    'fetching the schema from the instance.');
 
 is($object2->bla('test2'),'txn_do return txn_do return test2',
-   'using the schema in the declaration.');
+   'invoking in the subclass.');
 
 done_testing();
 

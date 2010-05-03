@@ -2,6 +2,7 @@ package MooseX::TransactionalMethods;
 use Moose ();
 use Moose::Exporter;
 use MooseX::TransactionalMethods::Meta::Method;
+use Sub::Name;
 
 Moose::Exporter->setup_import_methods
   ( with_meta => [ 'transactional' ],
@@ -28,7 +29,7 @@ sub transactional {
 
     my $m = $method_metaclass->name->wrap
       (
-       $code,
+       subname(join('::',$meta->name,$name),$code),
        package_name => $meta->name,
        name => $name,
        $schema ? (schema => $schema) : ()
