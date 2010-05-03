@@ -3,6 +3,14 @@ use Test::More;
 
 use_ok('MooseX::TransactionalMethods::Meta::Method');
 
+use Moose;
+my $method_metaclass = Moose::Meta::Class->create_anon_class
+  (
+   superclasses => ['Moose::Meta::Method'],
+   roles => ['MooseX::TransactionalMethods::Meta::Method'],
+   cache => 1,
+  );
+
 { package My::SchemaTest;
   use Moose;
   sub txn_do {
@@ -16,33 +24,31 @@ my $schema = My::SchemaTest->new();
 { package My::ClassTest1;
   use Moose;
   has 'schema' => (is => 'ro', required => 1);
-  no warnings 'once';
-  *bla = Moose::Meta::Method->wrap
+  my $m = $method_metaclass->name->wrap
     (
      sub {
          my $self = shift;
          return 'return '.shift;
      },
-     associated_metaclass => MooseX::TransactionalMethods::Meta::Method->meta,
      package_name => 'My::ClassTest1',
      name => 'bla'
-    )->body;
+    );
+  __PACKAGE__->meta->add_method('bla',$m);
 };
 
 { package My::ClassTest2;
   use Moose;
-  no warnings 'once';
-  *bla = Moose::Meta::Method->wrap
+  my $m = $method_metaclass->name->wrap
     (
      sub {
          my $self = shift;
          return 'return '.shift;
      },
-     associated_metaclass => MooseX::TransactionalMethods::Meta::Method->meta,
      package_name => 'My::ClassTest2',
      name => 'bla',
      schema => $schema
-    )->body;
+    );
+  __PACKAGE__->meta->add_method('bla',$m);
 };
 
 my $object1 = My::ClassTest1->new({ schema => $schema });
