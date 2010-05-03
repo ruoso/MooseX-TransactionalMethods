@@ -6,7 +6,7 @@ subtype 'SchemaGenerator',
   as 'CodeRef';
 coerce 'SchemaGenerator',
   from duck_type(['txn_do']),
-  via { sub { $_ } };
+  via { sub { sub { $_ } } };
 
 has schema =>
   ( is => 'ro',
@@ -17,14 +17,16 @@ has schema =>
 around 'wrap' => sub {
     my ($wrap, $method, $code, %options) = @_;
 
-    return $method->$wrap
+    my $meth_obj;
+    $meth_obj = $method->$wrap
       (
        sub {
            my ($self) = @_;
-           $method->schema->($self)->txn_do($code, @_);
+           $meth_obj->schema->($self)->txn_do($code, @_);
        },
        %options
       );
+    return $meth_obj;
 };
 
 1;

@@ -14,6 +14,7 @@ my $method_metaclass = Moose::Meta::Class->create_anon_class
 { package My::SchemaTest;
   use Moose;
   sub txn_do {
+      my $self = shift;
       my $code = shift;
       return 'txn_do '.$code->(@_);
   }
