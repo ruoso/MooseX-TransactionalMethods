@@ -1,4 +1,4 @@
-package MooseX::TransactionalMethods::Meta::Method;
+package MooseX::Meta::Method::Transactional;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 
@@ -35,7 +35,7 @@ __END__
 
 =head1 NAME
 
-MooseX::TransactionalMethods::Meta::Method - Transactional methods trait
+MooseX::Meta::Method::Transactional - Transactional methods trait
 
 =head1 DESCRIPTION
 

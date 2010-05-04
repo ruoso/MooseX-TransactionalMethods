@@ -1,10 +1,10 @@
 package MooseX::TransactionalMethods;
 use Moose ();
 use Moose::Exporter;
-use MooseX::TransactionalMethods::Meta::Method;
+use aliased MooseX::Meta::Method::Transactional;
 use Sub::Name;
 
-our $VERSION = 0.001;
+our $VERSION = 0.002;
 
 Moose::Exporter->setup_import_methods
   ( with_meta => [ 'transactional' ],
@@ -15,7 +15,7 @@ Moose::Exporter->setup_import_methods
 my $method_metaclass = Moose::Meta::Class->create_anon_class
   (
    superclasses => ['Moose::Meta::Method'],
-   roles => ['MooseX::TransactionalMethods::Meta::Method'],
+   roles => [ Transactional ],
    cache => 1,
   );
 
