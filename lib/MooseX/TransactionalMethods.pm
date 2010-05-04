@@ -4,7 +4,7 @@ use Moose::Exporter;
 use MooseX::TransactionalMethods::Meta::Method;
 use Sub::Name;
 
-our $VERSION = 0.000001;
+our $VERSION = 0.001;
 
 Moose::Exporter->setup_import_methods
   ( with_meta => [ 'transactional' ],

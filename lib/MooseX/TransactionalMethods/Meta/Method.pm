@@ -56,6 +56,8 @@ which it will call txn_do.
 
 =head1 ATTRIBUTES
 
+=over
+
 =item schema
 
 This attribute contains a CodeRef that should return the schema
