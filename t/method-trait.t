@@ -1,13 +1,13 @@
 #!/usr/bin/perl
 use Test::More;
 
-use_ok('MooseX::TransactionalMethods::Meta::Method');
+use_ok('MooseX::Meta::Method::Transactional');
 
 use Moose;
 my $method_metaclass = Moose::Meta::Class->create_anon_class
   (
    superclasses => ['Moose::Meta::Method'],
-   roles => ['MooseX::TransactionalMethods::Meta::Method'],
+   roles => ['MooseX::Meta::Method::Transactional'],
    cache => 1,
   );
 

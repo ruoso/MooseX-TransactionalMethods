@@ -1,7 +1,7 @@
 package MooseX::TransactionalMethods;
 use Moose ();
 use Moose::Exporter;
-use aliased MooseX::Meta::Method::Transactional;
+use aliased 'MooseX::Meta::Method::Transactional';
 use Sub::Name;
 
 our $VERSION = 0.002;
