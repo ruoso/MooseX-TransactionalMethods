@@ -1,5 +1,5 @@
 package MooseX::Meta::Method::Transactional;
-use Moose::Role;
+use MooseX::Meta::Method::Transactional::Meta::Role;
 use Moose::Util::TypeConstraints;
 
 subtype 'SchemaGenerator',
