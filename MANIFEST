@@ -10,7 +10,7 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/MooseX/TransactionalMethods.pm
-lib/MooseX/TransactionalMethods/Meta/Method.pm
+lib/MooseX/Meta/Method/Transactional.pm
 Makefile.PL
 MANIFEST
 META.yml
