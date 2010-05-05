@@ -10,6 +10,8 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/MooseX/Meta/Method/Transactional.pm
+lib/MooseX/Meta/Method/Transactional/Application/ToClass.pm
+lib/MooseX/Meta/Method/Transactional/Application/ToComposite.pm
 lib/MooseX/Meta/Method/Transactional/Application/ToInstance.pm
 lib/MooseX/Meta/Method/Transactional/Meta/Role.pm
 lib/MooseX/TransactionalMethods.pm
@@ -18,6 +20,7 @@ MANIFEST
 META.yml
 README
 t/apply-to-instance.t
+t/composed.t
 t/method-trait.t
 t/subclass.t
 t/syntax-sugar.t
