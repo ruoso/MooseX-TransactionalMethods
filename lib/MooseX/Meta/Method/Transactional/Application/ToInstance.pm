@@ -3,6 +3,9 @@ use Moose::Role;
 
 after apply => sub {
     my ($self, $role, $instance, $args) = @_;
+
+    $instance->meta->add_role($role);
+
     my $original_body = $instance->body;
     my $new_body = sub {
         my ($self) = @_;
