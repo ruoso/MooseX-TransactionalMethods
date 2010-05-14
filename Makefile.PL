@@ -4,6 +4,7 @@ name 'MooseX-TransactionalMethods';
 all_from 'lib/MooseX/TransactionalMethods.pm';
 
 requires 'Moose' => '0.90';
+requires 'aliased' => '0';
 
 auto_install;
 resources repository => 'http://github.com/ruoso/MooseX-TransactionalMethods/';
