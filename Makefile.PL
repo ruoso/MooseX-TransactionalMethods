@@ -3,7 +3,7 @@ use inc::Module::Install 0.91;
 name 'MooseX-TransactionalMethods';
 all_from 'lib/MooseX/TransactionalMethods.pm';
 
-requires 'Moose' => '0.90';
+requires 'Moose' => '1.2';
 requires 'aliased' => '0';
 
 auto_install;
