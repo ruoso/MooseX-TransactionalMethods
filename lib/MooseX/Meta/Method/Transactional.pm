@@ -1,4 +1,8 @@
 package MooseX::Meta::Method::Transactional;
+
+use strict;                     # keep CPANTS Kwalitee happy
+use warnings;                   # keep CPANTS Kwalitee happy
+
 use MooseX::Meta::Method::Transactional::Meta::Role;
 use Moose::Util::TypeConstraints;
 
