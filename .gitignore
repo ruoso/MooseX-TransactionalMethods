@@ -1,0 +1,8 @@
+META.yml
+MYMETA.*
+Makefile
+/MooseX-TransactionalMethods*
+MooseX-TransactionalMethods-*.tar.gz
+blib/
+inc/
+pm_to_blib
