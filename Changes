@@ -1,5 +1,15 @@
 Changes for MooseX::TransactionalMethods
 
+0.09      2015-03-26
+
+    - fixed: add dependency on 'Sub::Name' module.
+
+    - added: 'use strict; use warnings;' to
+              MooseX::Meta::Method::Transactional (for the benefit of
+              CPANTS quality metrics).
+
+    - added: this change log.
+
 0.08      2010-11-29
 
     - fixed: typo in previous version required wrong version of Moose.
